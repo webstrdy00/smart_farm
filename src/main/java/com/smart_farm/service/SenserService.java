@@ -31,7 +31,7 @@ public class SenserService {
             return "";
         }
         else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() ||
-        topSenser.isWindow() != requestDto.isWindow() || topSenser.isPen() != requestDto.isPen() || topSenser.isLight() != requestDto.isLight())
+        topSenser.isWindow() != requestDto.isWindow() || topSenser.isPen() != requestDto.isPen() || topSenser.isLight() != requestDto.isLight() || topSenser.getSoilHumidity() != requestDto.getSoilHumidity())
         {
             Senser senser = boardBuild(requestDto);
 
