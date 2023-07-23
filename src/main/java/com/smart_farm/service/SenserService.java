@@ -94,6 +94,17 @@ public class SenserService {
 
         return result;
     }
+    public List<DateAndValueResponseDto> getDateAndSoil() {
+        List<Senser> senserValueList = senserRepository.findAllByOrderByIdDesc();
+        List<DateAndValueResponseDto> result = new ArrayList<>();
+
+        for(Senser senser: senserValueList){
+            DateAndValueResponseDto dto = new DateAndValueResponseDto(senser.getDate(), senser.getSoilHumidity());
+            result.add(dto);
+        }
+
+        return result;
+    }
     public Senser boardBuild(SenserRequestDto requestDto){
         Senser senser = Senser.builder()
                 .id(requestDto.getId())
@@ -106,10 +117,12 @@ public class SenserService {
                 .lightValue(requestDto.getLightValue())
                 .temperature(requestDto.getTemperature())
                 .humidity(requestDto.getHumidity())
+                .soilHumidity(requestDto.getSoilHumidity())
                 .build();
 
         return senser;
     }
+
 //    public String boardDelete(BoardRequestDto requestDto){
 //
 //    }

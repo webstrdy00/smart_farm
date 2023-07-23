@@ -22,14 +22,12 @@ public class SenserController {  //HttpServerRequest
     public String saveValue(@RequestBody SenserRequestDto requestDto){
         return senserService.saveSenserValue(requestDto);
     }
-    
     // 모든값 불러오기
     @GetMapping("/get/sensers")
     public List<SenserResponseDto> getAllValue(){
         List<SenserResponseDto> dto = senserService.getValueAll();
         return dto;
     }
-
     // 최신값 불러오기
     @GetMapping("/get/latest/sensers")
     public SenserResponseDto getLatestAllValue(){
@@ -49,6 +47,9 @@ public class SenserController {  //HttpServerRequest
                 break;
             case "humidity":
                 values = senserService.getDateAndHum();
+                break;
+            case "soilHumidity":
+                values = senserService.getDateAndSoil();
                 break;
         }
         return values;

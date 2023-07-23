@@ -17,6 +17,7 @@ public class SenserResponseDto {
     private float lightValue;
     private float temperature;
     private float humidity;
+    private float soilHumidity;
 
     public SenserResponseDto(Senser senser){
         this.id = senser.getId();
@@ -29,5 +30,6 @@ public class SenserResponseDto {
         this.lightValue = senser.getLightValue();
         this.temperature = senser.getTemperature();
         this.humidity = senser.getHumidity();
+        this.soilHumidity = senser.getSoilHumidity();
     }
 }

@@ -47,6 +47,9 @@ public class Senser {
     @Column
     private float humidity; // 습도
 
+    @Column
+    private float soilHumidity; // 토양 습도
+
     // 토양 수분(아날로그 데이터)
     @ManyToOne
     @JoinColumn(name = "users")

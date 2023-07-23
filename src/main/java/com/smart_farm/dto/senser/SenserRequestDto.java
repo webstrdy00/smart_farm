@@ -44,6 +44,8 @@ public class SenserRequestDto {
     //@ApiModelProperty(value = "습도 값", example = "0.0", hidden = true)
     private float humidity;
 
+    private float soilHumidity;
+
     //@ApiModelProperty(value = "사용자 정보", hidden = true)
     private User user;
 
@@ -58,6 +60,7 @@ public class SenserRequestDto {
                 .lightValue(lightValue)
                 .temperature(temperature)
                 .humidity(humidity)
+                .soilHumidity(soilHumidity)
                 .nickname(user.getNickname())
                 .build();
 
