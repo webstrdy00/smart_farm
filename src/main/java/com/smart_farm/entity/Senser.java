@@ -50,7 +50,6 @@ public class Senser {
     @Column
     private float soilHumidity; // 토양 습도
 
-    // 토양 수분(아날로그 데이터)
     @ManyToOne
     @JoinColumn(name = "users")
     private User user;
@@ -61,6 +60,7 @@ public class Senser {
         this.lightValue = requestDto.getLightValue();
         this.temperature = requestDto.getTemperature();
         this.humidity = requestDto.getHumidity();
+        this.soilHumidity = requestDto.getSoilHumidity();
         this.pen = requestDto.isPen();
         this.subMoter = requestDto.isSubMoter();
         this.window =requestDto.isWindow();
