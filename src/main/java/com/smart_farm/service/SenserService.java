@@ -45,7 +45,7 @@ public class SenserService {
     }
 
     public List<SenserResponseDto> getValueAll(){
-        List<Senser> sensers =  senserRepository.findAll();
+        List<Senser> sensers =  senserRepository.findAllByOrderByIdDesc();
         if (sensers == null)
             throw new RuntimeException("농장 없음");
 
