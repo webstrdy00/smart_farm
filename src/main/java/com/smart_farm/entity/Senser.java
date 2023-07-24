@@ -32,11 +32,8 @@ public class Senser {
     @Column(name = "moter")
     private boolean subMoter; // 서브모터 상태값
 
-    @Column(name = "windows")
-    private boolean window; // 창 상태값
-
     @Column()
-    private boolean light;  // 조명 상태값
+    private boolean LED;  // 조명 상태값
 
     @Column
     private float lightValue;  // 조도(아날로그 데이터)
@@ -48,7 +45,10 @@ public class Senser {
     private float humidity; // 습도
 
     @Column
-    private float soilHumidity; // 토양 습도
+    private float soilMoisture; // 토양 습도
+
+    @Column
+    private float co2Value; // 이산화탄소
 
     @ManyToOne
     @JoinColumn(name = "users")
@@ -60,11 +60,11 @@ public class Senser {
         this.lightValue = requestDto.getLightValue();
         this.temperature = requestDto.getTemperature();
         this.humidity = requestDto.getHumidity();
-        this.soilHumidity = requestDto.getSoilHumidity();
+        this.soilMoisture = requestDto.getSoilMoisture();
+        this.co2Value = requestDto.getCo2Value();
         this.pen = requestDto.isPen();
         this.subMoter = requestDto.isSubMoter();
-        this.window =requestDto.isWindow();
-        this.light = requestDto.isLight();
+        this.LED = requestDto.isLED();
         this.user = user;
     }
 

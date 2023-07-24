@@ -12,12 +12,12 @@ public class SenserResponseDto {
     private LocalDateTime date;
     private boolean pen;
     private boolean subMoter;
-    private boolean light;
-    private boolean window;
+    private boolean LED;
     private float lightValue;
     private float temperature;
     private float humidity;
-    private float soilHumidity;
+    private float soilMoisture;
+    private float co2Value;
 
     public SenserResponseDto(Senser senser){
         this.id = senser.getId();
@@ -25,11 +25,11 @@ public class SenserResponseDto {
         this.date = senser.getDate();
         this.pen = senser.isPen();
         this.subMoter = senser.isSubMoter();
-        this.light = senser.isLight();
-        this.window = senser.isWindow();
+        this.LED = senser.isLED();
         this.lightValue = senser.getLightValue();
         this.temperature = senser.getTemperature();
         this.humidity = senser.getHumidity();
-        this.soilHumidity = senser.getSoilHumidity();
+        this.soilMoisture = senser.getSoilMoisture();
+        this.co2Value = senser.getCo2Value();
     }
 }

@@ -30,8 +30,8 @@ public class SenserService {
 
             return "";
         }
-        else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() ||
-        topSenser.isWindow() != requestDto.isWindow() || topSenser.isPen() != requestDto.isPen() || topSenser.isLight() != requestDto.isLight() || topSenser.getSoilHumidity() != requestDto.getSoilHumidity())
+        else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() || topSenser.isPen() != requestDto.isPen() || topSenser.isLED() != requestDto.isLED() ||
+                topSenser.getSoilMoisture() != requestDto.getSoilMoisture() || topSenser.getCo2Value() != requestDto.getCo2Value())
         {
             Senser senser = boardBuild(requestDto);
 
@@ -99,11 +99,21 @@ public class SenserService {
         List<DateAndValueResponseDto> result = new ArrayList<>();
 
         for(Senser senser: senserValueList){
-            DateAndValueResponseDto dto = new DateAndValueResponseDto(senser.getDate(), senser.getSoilHumidity());
+            DateAndValueResponseDto dto = new DateAndValueResponseDto(senser.getDate(), senser.getSoilMoisture());
             result.add(dto);
         }
 
         return result;
+    }
+    public List<DateAndValueResponseDto> getDateAndCo2() {
+        List<Senser> senserValueList = senserRepository.findAllByOrderByIdDesc();
+        List<DateAndValueResponseDto> result = new ArrayList<>();
+
+        for (Senser senser: senserValueList){
+            DateAndValueResponseDto dto = new DateAndValueResponseDto(senser.getDate(), senser.getCo2Value());
+            result.add(dto);
+        }
+        return  result;
     }
     public Senser boardBuild(SenserRequestDto requestDto){
         Senser senser = Senser.builder()
@@ -112,16 +122,18 @@ public class SenserService {
                 .date(requestDto.getDate())
                 .pen(requestDto.isPen())
                 .subMoter(requestDto.isSubMoter())
-                .window(requestDto.isWindow())
-                .light(requestDto.isLight())
+                .LED(requestDto.isLED())
                 .lightValue(requestDto.getLightValue())
                 .temperature(requestDto.getTemperature())
                 .humidity(requestDto.getHumidity())
-                .soilHumidity(requestDto.getSoilHumidity())
+                .soilMoisture(requestDto.getSoilMoisture())
+                .co2Value(requestDto.getCo2Value())
                 .build();
 
         return senser;
     }
+
+
 
 //    public String boardDelete(BoardRequestDto requestDto){
 //

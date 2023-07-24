@@ -29,11 +29,8 @@ public class SenserRequestDto {
     //@ApiModelProperty(value = "서브모터 동작 상태", example = "1", hidden = true)
     private boolean subMoter;
 
-    //@ApiModelProperty(value = "창 동작 상태", example = "1", hidden = true)
-    private boolean window;
-
     //@ApiModelProperty(value = "조명 동작 상태", example = "1", hidden = true)
-    private boolean light;
+    private boolean LED;
 
     //@ApiModelProperty(value = "조도 값", example = "0.0", hidden = true)
     private float lightValue;
@@ -44,7 +41,9 @@ public class SenserRequestDto {
     //@ApiModelProperty(value = "습도 값", example = "0.0", hidden = true)
     private float humidity;
 
-    private float soilHumidity;
+    private float soilMoisture;
+
+    private float co2Value;
 
     //@ApiModelProperty(value = "사용자 정보", hidden = true)
     private User user;
@@ -55,12 +54,12 @@ public class SenserRequestDto {
                 .date(date)
                 .pen(pen)
                 .subMoter(subMoter)
-                .window(window)
-                .light(light)
+                .LED(LED)
                 .lightValue(lightValue)
                 .temperature(temperature)
                 .humidity(humidity)
-                .soilHumidity(soilHumidity)
+                .soilMoisture(soilMoisture)
+                .co2Value(co2Value)
                 .nickname(user.getNickname())
                 .build();
 
