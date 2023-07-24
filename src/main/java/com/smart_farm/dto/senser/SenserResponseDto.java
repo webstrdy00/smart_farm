@@ -12,7 +12,7 @@ public class SenserResponseDto {
     private LocalDateTime date;
     private boolean pen;
     private boolean subMoter;
-    private boolean LED;
+    private boolean led;
     private float lightValue;
     private float temperature;
     private float humidity;
@@ -25,7 +25,7 @@ public class SenserResponseDto {
         this.date = senser.getDate();
         this.pen = senser.isPen();
         this.subMoter = senser.isSubMoter();
-        this.LED = senser.isLED();
+        this.led = senser.isLed();
         this.lightValue = senser.getLightValue();
         this.temperature = senser.getTemperature();
         this.humidity = senser.getHumidity();

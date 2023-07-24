@@ -33,7 +33,7 @@ public class Senser {
     private boolean subMoter; // 서브모터 상태값
 
     @Column()
-    private boolean LED;  // 조명 상태값
+    private boolean led;  // 조명 상태값
 
     @Column
     private float lightValue;  // 조도(아날로그 데이터)
@@ -64,7 +64,7 @@ public class Senser {
         this.co2Value = requestDto.getCo2Value();
         this.pen = requestDto.isPen();
         this.subMoter = requestDto.isSubMoter();
-        this.LED = requestDto.isLED();
+        this.led = requestDto.isLed();
         this.user = user;
     }
 

@@ -30,7 +30,7 @@ public class SenserService {
 
             return "";
         }
-        else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() || topSenser.isPen() != requestDto.isPen() || topSenser.isLED() != requestDto.isLED() ||
+        else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() || topSenser.isPen() != requestDto.isPen() || topSenser.isLed() != requestDto.isLed() ||
                 topSenser.getSoilMoisture() != requestDto.getSoilMoisture() || topSenser.getCo2Value() != requestDto.getCo2Value())
         {
             Senser senser = boardBuild(requestDto);
@@ -122,7 +122,7 @@ public class SenserService {
                 .date(requestDto.getDate())
                 .pen(requestDto.isPen())
                 .subMoter(requestDto.isSubMoter())
-                .LED(requestDto.isLED())
+                .led(requestDto.isLed())
                 .lightValue(requestDto.getLightValue())
                 .temperature(requestDto.getTemperature())
                 .humidity(requestDto.getHumidity())
