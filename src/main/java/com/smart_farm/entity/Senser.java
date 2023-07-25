@@ -54,7 +54,7 @@ public class Senser {
     @JoinColumn(name = "users")
     private User user;
 
-    public Senser(SenserRequestDto requestDto, User user){
+    public Senser(SenserRequestDto requestDto){
         this.id = requestDto.getId();
         this.date = requestDto.getDate();
         this.lightValue = requestDto.getLightValue();
@@ -65,10 +65,5 @@ public class Senser {
         this.pen = requestDto.isPen();
         this.subMoter = requestDto.isSubMoter();
         this.led = requestDto.isLed();
-        this.user = user;
-    }
-
-    public void update(){
-
     }
 }

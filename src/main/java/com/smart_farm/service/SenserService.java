@@ -19,12 +19,11 @@ import java.util.stream.Collectors;
 @Service
 public class SenserService {
     private final SenserRepository senserRepository;
-    private final UserRepository userRepository;
 
     public String saveSenserValue(SenserRequestDto requestDto){
         Senser topSenser = senserRepository.findTopByOrderByIdDesc();
         if(topSenser == null){
-            Senser senser = boardBuild(requestDto);
+            Senser senser = new Senser(requestDto);
 
             senserRepository.save(senser);
 
@@ -33,7 +32,7 @@ public class SenserService {
         else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() || topSenser.isPen() != requestDto.isPen() || topSenser.isLed() != requestDto.isLed() ||
                 topSenser.getSoilMoisture() != requestDto.getSoilMoisture() || topSenser.getCo2Value() != requestDto.getCo2Value())
         {
-            Senser senser = boardBuild(requestDto);
+            Senser senser = new Senser(requestDto);
 
             senserRepository.save(senser);
 
@@ -47,7 +46,7 @@ public class SenserService {
     public List<SenserResponseDto> getValueAll(){
         List<Senser> sensers =  senserRepository.findAllByOrderByIdDesc();
         if (sensers == null)
-            throw new RuntimeException("농장 없음");
+            throw new RuntimeException("농장 없음");  // 내가 정의한 errorcode로 적용시키기
 
         return sensers.stream().map(SenserResponseDto::new).collect(Collectors.toList());
     }
@@ -55,7 +54,7 @@ public class SenserService {
     public SenserResponseDto getLatestValueAll(){
         Senser sensers =  senserRepository.findTopByOrderByIdDesc();
         if (sensers == null)
-            throw new RuntimeException("농장 없음");
+            throw new RuntimeException("농장 없음");  // 내가 정의한 errorcode로 적용시키기
         SenserResponseDto dto = new SenserResponseDto(sensers);
         return dto;
     }
@@ -115,26 +114,6 @@ public class SenserService {
         }
         return  result;
     }
-    public Senser boardBuild(SenserRequestDto requestDto){
-        Senser senser = Senser.builder()
-                .id(requestDto.getId())
-                .nickname("동휘")
-                .date(requestDto.getDate())
-                .pen(requestDto.isPen())
-                .subMoter(requestDto.isSubMoter())
-                .led(requestDto.isLed())
-                .lightValue(requestDto.getLightValue())
-                .temperature(requestDto.getTemperature())
-                .humidity(requestDto.getHumidity())
-                .soilMoisture(requestDto.getSoilMoisture())
-                .co2Value(requestDto.getCo2Value())
-                .build();
-
-        return senser;
-    }
-
-
-
 //    public String boardDelete(BoardRequestDto requestDto){
 //
 //    }

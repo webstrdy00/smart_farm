@@ -15,30 +15,29 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SenserController {  //HttpServerRequest
     private final SenserService senserService;
-    private final SenserRepository senserRepository;
 
     // 값 저장하기
-    @PostMapping("/post/senser")
+    @PostMapping("/senser/data")
     public String saveValue(@RequestBody SenserRequestDto requestDto) {
         return senserService.saveSenserValue(requestDto);
     }
 
     // 모든값 불러오기
-    @GetMapping("/get/sensers")
+    @GetMapping("/sensers")
     public List<SenserResponseDto> getAllValue() {
         List<SenserResponseDto> dto = senserService.getValueAll();
         return dto;
     }
 
     // 최신값 불러오기
-    @GetMapping("/get/latest/sensers")
+    @GetMapping("/latest/sensers")
     public SenserResponseDto getLatestAllValue() {
         SenserResponseDto dto = senserService.getLatestValueAll();
         return dto;
     }
 
     // 특정값 불러오기
-    @GetMapping("/get/senser")
+    @GetMapping("/senser")
     public List<DateAndValueResponseDto> getValue(@RequestParam String senser) {
         List<DateAndValueResponseDto> values = new ArrayList<>();
         switch (senser) {
