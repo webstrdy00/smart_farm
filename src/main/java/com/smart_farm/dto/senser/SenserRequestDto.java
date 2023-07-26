@@ -32,6 +32,8 @@ public class SenserRequestDto {
     //@ApiModelProperty(value = "조명 동작 상태", example = "1", hidden = true)
     private boolean led;
 
+    private boolean waterPump;
+
     //@ApiModelProperty(value = "조도 값", example = "0.0", hidden = true)
     private float lightValue;
 
@@ -55,6 +57,7 @@ public class SenserRequestDto {
                 .pen(pen)
                 .subMoter(subMoter)
                 .led(led)
+                .waterPump(waterPump)
                 .lightValue(lightValue)
                 .temperature(temperature)
                 .humidity(humidity)

@@ -18,8 +18,8 @@ public class SenserController {  //HttpServerRequest
 
     // 값 저장하기
     @PostMapping("/senser/data")
-    public String saveValue(@RequestBody SenserRequestDto requestDto) {
-        return senserService.saveSenserValue(requestDto);
+    public void saveValue(@RequestBody SenserRequestDto requestDto) {
+        senserService.saveSenserValue(requestDto);
     }
 
     // 모든값 불러오기
@@ -59,11 +59,11 @@ public class SenserController {  //HttpServerRequest
         }
         return values;
     }
-//    // 값 삭제하기
-//    @DeleteMapping("/delete/board")
-//    public String deleteSenserValue(@RequestBody BoardRequestDto requestDto){
-//        return boardService.boardDelete(requestDto);
-//    }
+    // 특정값 삭제하기
+    @DeleteMapping("/{senserId}")
+    public void deleteSenserValue(@PathVariable(name = "senserId") Long senserId){
+        senserService.deleteSenser(senserId);
+    }
 
 //    @PutMapping("/put/board/{id}")
 //    public String updateSenser(@PathVariable Long id, @RequestBody BoardRequestDto requestDto){

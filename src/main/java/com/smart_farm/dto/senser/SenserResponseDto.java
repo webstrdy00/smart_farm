@@ -13,6 +13,7 @@ public class SenserResponseDto {
     private boolean pen;
     private boolean subMoter;
     private boolean led;
+    private boolean waterPump;
     private float lightValue;
     private float temperature;
     private float humidity;
@@ -26,6 +27,7 @@ public class SenserResponseDto {
         this.pen = senser.isPen();
         this.subMoter = senser.isSubMoter();
         this.led = senser.isLed();
+        this.waterPump = senser.isWaterPump();
         this.lightValue = senser.getLightValue();
         this.temperature = senser.getTemperature();
         this.humidity = senser.getHumidity();

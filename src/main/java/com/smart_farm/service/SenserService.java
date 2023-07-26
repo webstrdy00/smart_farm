@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -20,14 +21,12 @@ import java.util.stream.Collectors;
 public class SenserService {
     private final SenserRepository senserRepository;
 
-    public String saveSenserValue(SenserRequestDto requestDto){
+    public void saveSenserValue(SenserRequestDto requestDto){
         Senser topSenser = senserRepository.findTopByOrderByIdDesc();
         if(topSenser == null){
             Senser senser = new Senser(requestDto);
 
             senserRepository.save(senser);
-
-            return "";
         }
         else if(topSenser.getTemperature() != requestDto.getTemperature()|| topSenser.getHumidity() != requestDto.getHumidity() || topSenser.isSubMoter() != requestDto.isSubMoter() || topSenser.isPen() != requestDto.isPen() || topSenser.isLed() != requestDto.isLed() ||
                 topSenser.getSoilMoisture() != requestDto.getSoilMoisture() || topSenser.getCo2Value() != requestDto.getCo2Value())
@@ -35,11 +34,6 @@ public class SenserService {
             Senser senser = new Senser(requestDto);
 
             senserRepository.save(senser);
-
-            return "";
-        }
-        else{
-            return "";
         }
     }
 
@@ -113,6 +107,11 @@ public class SenserService {
             result.add(dto);
         }
         return  result;
+    }
+
+    public void deleteSenser(Long senserId) {
+        Optional<Senser> senserOptional = senserRepository.findById(senserId);
+        senserOptional.ifPresent(senser -> senserRepository.delete(senser));
     }
 //    public String boardDelete(BoardRequestDto requestDto){
 //

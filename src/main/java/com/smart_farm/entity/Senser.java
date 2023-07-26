@@ -35,6 +35,9 @@ public class Senser {
     @Column()
     private boolean led;  // 조명 상태값
 
+    @Column()
+    private boolean waterPump; // 워터 펌프
+
     @Column
     private float lightValue;  // 조도(아날로그 데이터)
 
@@ -65,5 +68,7 @@ public class Senser {
         this.pen = requestDto.isPen();
         this.subMoter = requestDto.isSubMoter();
         this.led = requestDto.isLed();
+        this.waterPump = requestDto.isWaterPump();
+        this.nickname = "donghwi";
     }
 }
