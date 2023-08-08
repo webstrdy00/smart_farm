@@ -1,10 +1,10 @@
 package com.smart_farm.controller;
 
-import com.smart_farm.dto.senser.DateAndValueResponseDto;
-import com.smart_farm.dto.senser.SenserRequestDto;
-import com.smart_farm.dto.senser.SenserResponseDto;
-import com.smart_farm.repository.SenserRepository;
+import com.smart_farm.dto.senser.response.DateAndValueResponseDto;
+import com.smart_farm.dto.senser.request.SenserRequestDto;
+import com.smart_farm.dto.senser.response.SenserResponseDto;
 import com.smart_farm.service.SenserService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,34 +13,39 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/senser")
 public class SenserController {  //HttpServerRequest
     private final SenserService senserService;
 
     // 값 저장하기
-    @PostMapping("/senser/data")
+    @ApiOperation(value = "데이터 저장 API")
+    @PostMapping("/data")
     public void saveValue(@RequestBody SenserRequestDto requestDto) {
         senserService.saveSenserValue(requestDto);
     }
 
     // 모든값 불러오기
-    @GetMapping("/sensers")
+    @ApiOperation(value = "모든 데이터 호출 API")
+    @GetMapping("")
     public List<SenserResponseDto> getAllValue() {
         List<SenserResponseDto> dto = senserService.getValueAll();
         return dto;
     }
 
     // 최신값 불러오기
-    @GetMapping("/latest/sensers")
+    @ApiOperation(value = "최신 데이터 호출 API")
+    @GetMapping("/latest")
     public SenserResponseDto getLatestAllValue() {
         SenserResponseDto dto = senserService.getLatestValueAll();
         return dto;
     }
 
     // 특정값 불러오기
-    @GetMapping("/senser")
-    public List<DateAndValueResponseDto> getValue(@RequestParam String senser) {
+    @ApiOperation(value = "특정 데이터 호출 API")
+    @GetMapping("/value")
+    public List<DateAndValueResponseDto> getValue(@RequestParam String value) {
         List<DateAndValueResponseDto> values = new ArrayList<>();
-        switch (senser) {
+        switch (value) {
             case "lightValue":
                 values = senserService.getDateAndLightValue();
                 break;
@@ -60,6 +65,7 @@ public class SenserController {  //HttpServerRequest
         return values;
     }
     // 특정값 삭제하기
+    @ApiOperation(value = "특정 데이터 삭제 API")
     @DeleteMapping("/{senserId}")
     public void deleteSenserValue(@PathVariable(name = "senserId") Long senserId){
         senserService.deleteSenser(senserId);

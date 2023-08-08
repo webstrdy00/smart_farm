@@ -1,4 +1,4 @@
-package com.smart_farm.dto.senser;
+package com.smart_farm.dto.senser.request;
 
 import com.smart_farm.entity.Senser;
 import com.smart_farm.entity.User;

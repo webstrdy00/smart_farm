@@ -1,11 +1,11 @@
 package com.smart_farm.service;
 
-import com.smart_farm.dto.senser.DateAndValueResponseDto;
-import com.smart_farm.dto.senser.SenserRequestDto;
-import com.smart_farm.dto.senser.SenserResponseDto;
+import com.smart_farm.dto.senser.response.DateAndValueResponseDto;
+import com.smart_farm.dto.senser.request.SenserRequestDto;
+import com.smart_farm.dto.senser.response.SenserResponseDto;
 import com.smart_farm.entity.Senser;
+import com.smart_farm.error.exception.NotFoundException;
 import com.smart_farm.repository.SenserRepository;
-import com.smart_farm.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.smart_farm.error.ErrorCode.*;
 
 @Transactional
 @RequiredArgsConstructor
@@ -40,7 +42,7 @@ public class SenserService {
     public List<SenserResponseDto> getValueAll(){
         List<Senser> sensers =  senserRepository.findAllByOrderByIdDesc();
         if (sensers == null)
-            throw new RuntimeException("농장 없음");  // 내가 정의한 errorcode로 적용시키기
+            throw new NotFoundException("농장 없음", NOT_FOUND_EXCEPTION);
 
         return sensers.stream().map(SenserResponseDto::new).collect(Collectors.toList());
     }
@@ -48,7 +50,7 @@ public class SenserService {
     public SenserResponseDto getLatestValueAll(){
         Senser sensers =  senserRepository.findTopByOrderByIdDesc();
         if (sensers == null)
-            throw new RuntimeException("농장 없음");  // 내가 정의한 errorcode로 적용시키기
+            throw new NotFoundException("농장 없음", NOT_FOUND_EXCEPTION);
         SenserResponseDto dto = new SenserResponseDto(sensers);
         return dto;
     }
@@ -113,11 +115,4 @@ public class SenserService {
         Optional<Senser> senserOptional = senserRepository.findById(senserId);
         senserOptional.ifPresent(senser -> senserRepository.delete(senser));
     }
-//    public String boardDelete(BoardRequestDto requestDto){
-//
-//    }
-
-//    public BoardResponseDto getValueById(Long id){
-//        Board board = boardRepository.
-//    }
 }

@@ -1,4 +1,4 @@
-package com.smart_farm.dto.senser;
+package com.smart_farm.dto.senser.response;
 
 import com.smart_farm.entity.Senser;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.smart_farm.entity;
 
-import com.smart_farm.dto.senser.SenserRequestDto;
+import com.smart_farm.dto.senser.request.SenserRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -69,6 +69,6 @@ public class Senser {
         this.subMoter = requestDto.isSubMoter();
         this.led = requestDto.isLed();
         this.waterPump = requestDto.isWaterPump();
-        this.nickname = "donghwi";
+        this.nickname = user.getNickname();
     }
 }

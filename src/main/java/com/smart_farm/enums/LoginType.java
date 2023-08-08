@@ -5,11 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum UserRole {
+public enum LoginType {
 
-    USER("ROLE_USER", "일반 사용자"),
-    MANAGER("ROLE_MANAGER", "농장 관리자"),
-    ADMIN("ROLE_ADMIN", "관리자");
+    NORMAL("ROLE_NORMAL", "자사 로그인"),
+    KAKAO("ROLE_KAKAO", "카카오 로그인");
 
     private final String key;
     private final String title;
